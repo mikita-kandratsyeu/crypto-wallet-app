@@ -37,8 +37,11 @@ export type iconTypes =
 // Store
 export interface IStore {
   tabReducer: ITabState;
+  marketReducer: IMarketState;
 }
 
 export interface ITabState {
   isTradeModalVisible: boolean;
 }
+
+export type IMarketState = any;

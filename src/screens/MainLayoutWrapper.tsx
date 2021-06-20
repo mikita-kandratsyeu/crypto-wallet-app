@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { colors, sizes, icons } from '../constants';
 
 export interface IMainLayoutProps {

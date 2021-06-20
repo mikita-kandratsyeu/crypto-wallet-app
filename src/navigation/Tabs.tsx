@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home, Portfolio, Market, Profile, Trade } from '../screens';
-import { TabIcon } from '../components';
+import { TabBarCustomButton, TabIcon } from '../components';
 import { colors, icons, StackRoutes } from '../constants';
 
 const Tab = createBottomTabNavigator();
@@ -54,6 +54,12 @@ export const Tabs: React.FC = () => {
               icon={icons.trade}
               label={StackRoutes.Trade}
               isTrade
+            />
+          ),
+          tabBarButton: props => (
+            <TabBarCustomButton
+              {...props}
+              onPress={() => console.log('Trade button was pressed')}
             />
           ),
         }}

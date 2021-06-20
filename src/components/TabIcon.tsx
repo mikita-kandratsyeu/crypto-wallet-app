@@ -1,0 +1,77 @@
+import React, { useMemo } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { Icon } from '.';
+import { fonts, colors } from '../constants';
+import { iconTypes } from '../types';
+
+export interface ITabIconProps {
+  focused: boolean;
+  icon: iconTypes;
+  label: string;
+  isTrade?: boolean;
+}
+
+export const TabIcon: React.FC<ITabIconProps> = ({
+  focused,
+  icon,
+  label,
+  isTrade,
+}) => {
+  const iconColor = useMemo(() => {
+    return focused ? colors.white : colors.secondary;
+  }, [focused]);
+
+  const textStyle = useMemo(() => {
+    return [
+      { color: focused ? colors.white : colors.secondary },
+      fonts.h4,
+      styles.text,
+    ];
+  }, [focused]);
+
+  const textTradeStyle = [{ color: colors.white }, fonts.h4, styles.text];
+
+  const tradeContainerStyle = [styles.root, styles.tradeContainer];
+
+  return isTrade ? (
+    <View style={tradeContainerStyle}>
+      <Icon
+        name={icon}
+        width={styles.icon.width}
+        height={styles.icon.height}
+        color={colors.white}
+      />
+      <Text style={textTradeStyle}>{label}</Text>
+    </View>
+  ) : (
+    <View style={styles.root}>
+      <Icon
+        name={icon}
+        width={styles.icon.width}
+        height={styles.icon.height}
+        color={iconColor}
+      />
+      <Text style={textStyle}>{label}</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  root: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  tradeContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: colors.black,
+  },
+  icon: {
+    width: 15,
+    height: 15,
+  },
+  text: {
+    marginTop: 5,
+  },
+});

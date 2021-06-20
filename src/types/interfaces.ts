@@ -20,3 +20,25 @@ export interface ISettings {
   language: string;
   faceId: boolean;
 }
+
+export type iconTypes =
+  | 'close'
+  | 'briefcase'
+  | 'home'
+  | 'market'
+  | 'profile'
+  | 'rightArrow'
+  | 'send'
+  | 'trade'
+  | 'upArrow'
+  | 'verified'
+  | 'withdraw';
+
+// Store
+export interface IStore {
+  tabReducer: ITabState;
+}
+
+export interface ITabState {
+  isTradeModalVisible: boolean;
+}

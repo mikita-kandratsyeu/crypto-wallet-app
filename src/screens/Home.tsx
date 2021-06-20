@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { MainLayoutWrapper } from '.';
 
 export const Home: React.FC = () => {
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+    <MainLayoutWrapper>
+      <View>
+        <Text>Home</Text>
+      </View>
+    </MainLayoutWrapper>
   );
 };

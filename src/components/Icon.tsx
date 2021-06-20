@@ -20,6 +20,9 @@ import Trade from '../../assets/icons/trade.svg';
 import UpArrow from '../../assets/icons/up-arrow.svg';
 // @ts-ignore
 import Verified from '../../assets/icons/verified.svg';
+// @ts-ignore
+import WithDraw from '../../assets/icons/withdraw.svg';
+
 import { iconTypes } from '../types';
 
 export interface IIconProps {
@@ -56,6 +59,8 @@ export const Icon: React.FC<IIconProps> = ({
       return <UpArrow fill={color} width={width} height={height} />;
     case 'verified':
       return <Verified fill={color} width={width} height={height} />;
+    case 'withdraw':
+      return <WithDraw fill={color} width={width} height={height} />;
     default:
       return null;
   }

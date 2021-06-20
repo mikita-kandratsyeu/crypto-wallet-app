@@ -3,4 +3,4 @@ export * from './Market';
 export * from './Portfolio';
 export * from './Profile';
 export * from './Trade';
-export * from './MainLayoutWrapper';
+export { default as MainLayoutWrapper } from './MainLayoutWrapper';

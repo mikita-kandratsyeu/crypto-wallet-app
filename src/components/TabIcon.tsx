@@ -1,13 +1,12 @@
 import React, { useMemo } from 'react';
-
-import { StyleSheet, View, Text, Image } from 'react-native';
-
+import { StyleSheet, View, Text } from 'react-native';
+import { Icon } from '.';
 import { fonts, colors } from '../constants';
+import { iconTypes } from '../types';
 
 export interface ITabIconProps {
   focused: boolean;
-  icon: any;
-  iconStyleProp?: any;
+  icon: iconTypes;
   label: string;
   isTrade?: boolean;
 }
@@ -15,40 +14,43 @@ export interface ITabIconProps {
 export const TabIcon: React.FC<ITabIconProps> = ({
   focused,
   icon,
-  iconStyleProp,
   label,
   isTrade,
 }) => {
-  const iconStyle = useMemo(() => {
+  const iconColor = useMemo(() => {
+    return focused ? colors.white : colors.secondary;
+  }, [focused]);
+
+  const textStyle = useMemo(() => {
     return [
-      styles.icon,
-      { tintColor: focused ? colors.white : colors.secondary },
-      iconStyleProp,
+      { color: focused ? colors.white : colors.secondary },
+      fonts.h4,
+      styles.text,
     ];
   }, [focused]);
 
-  const iconTradeStyle = [
-    styles.icon,
-    { tintColor: colors.white },
-    iconStyleProp,
-  ];
-
-  const textStyle = useMemo(() => {
-    return [{ color: focused ? colors.white : colors.secondary }, fonts.h4];
-  }, [focused]);
-
-  const textTradeStyle = [{ color: colors.white }, fonts.h4];
+  const textTradeStyle = [{ color: colors.white }, fonts.h4, styles.text];
 
   const tradeContainerStyle = [styles.root, styles.tradeContainer];
 
   return isTrade ? (
     <View style={tradeContainerStyle}>
-      <Image source={icon} resizeMode="contain" style={iconTradeStyle} />
+      <Icon
+        name={icon}
+        width={styles.icon.width}
+        height={styles.icon.height}
+        color={colors.white}
+      />
       <Text style={textTradeStyle}>{label}</Text>
     </View>
   ) : (
     <View style={styles.root}>
-      <Image source={icon} resizeMode="contain" style={iconStyle} />
+      <Icon
+        name={icon}
+        width={styles.icon.width}
+        height={styles.icon.height}
+        color={iconColor}
+      />
       <Text style={textStyle}>{label}</Text>
     </View>
   );
@@ -66,7 +68,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.black,
   },
   icon: {
-    width: 25,
-    height: 25,
+    width: 15,
+    height: 15,
+  },
+  text: {
+    marginTop: 5,
   },
 });

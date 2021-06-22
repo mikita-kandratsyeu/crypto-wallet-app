@@ -1,5 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { StyleSheet, View, Animated } from 'react-native';
+import {
+  StyleSheet,
+  Animated,
+  SafeAreaView,
+  View,
+  StatusBar,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { IconTextButton } from '../components';
 import { colors, messages, sizes } from '../constants';
@@ -38,7 +44,8 @@ const MainLayoutWrapper: React.FC<IMainLayoutProps> = ({
   });
 
   return (
-    <View style={styles.root}>
+    <SafeAreaView style={styles.root}>
+      <StatusBar barStyle="light-content" />
       {children}
       {isTradeModalVisible && (
         <Animated.View
@@ -61,13 +68,14 @@ const MainLayoutWrapper: React.FC<IMainLayoutProps> = ({
           onPress={() => console.log('Withdraw')}
         />
       </Animated.View>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+    backgroundColor: colors.black,
   },
   modal: {
     position: 'absolute',
@@ -90,7 +98,5 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state: IStore) => ({
   isTradeModalVisible: state.tabReducer.isTradeModalVisible,
 });
-
-// const mapDispatchToProps = (dispatch: any) => ({});
 
 export default connect(mapStateToProps, null)(MainLayoutWrapper);

@@ -6,6 +6,9 @@ enum messages {
   profile = 'Profile',
   transfer = 'Transfer',
   withdraw = 'Withdraw',
+  yourWallet = 'Your Wallet',
+  changes7d = '7d changes',
+  usd = 'USD',
 }
 
 export default messages;

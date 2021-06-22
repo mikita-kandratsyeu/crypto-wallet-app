@@ -9,6 +9,7 @@ enum messages {
   yourWallet = 'Your Wallet',
   changes7d = '7d changes',
   usd = 'USD',
+  topCryptoCurrency = 'Top Cryptocurrency',
 }
 
 export default messages;

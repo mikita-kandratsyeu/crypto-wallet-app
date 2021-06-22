@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+// @ts-ignore
 import AnimateNumber from 'react-native-countup';
 import { Icon } from '.';
 import { colors, fonts, messages, sizes } from '../constants';
@@ -43,7 +44,7 @@ export const BalanceInfo: React.FC<IBalanceInfoProps> = ({
         <Text style={styles.figuresCurrencySymbol}>$</Text>
         <Text style={styles.figuresAmount}>
           <AnimateNumber
-            value={Number(displayAmount)}
+            value={Number(displayAmount || 0)}
             timing="linear"
             interval={15}
             formatter={(value: number) => value.toLocaleString()}
@@ -52,7 +53,7 @@ export const BalanceInfo: React.FC<IBalanceInfoProps> = ({
         <Text style={styles.figuresCurrency}>{messages.usd}</Text>
       </View>
       <View style={styles.changePercentContainer}>
-        {Number(changePct) !== 0 && (
+        {Number(changePct || 0) !== 0 && (
           <View style={changePercentIconStyle}>
             <Icon
               name="upArrow"
@@ -63,7 +64,12 @@ export const BalanceInfo: React.FC<IBalanceInfoProps> = ({
           </View>
         )}
         <Text style={changePercentTextStyle}>
-          {`${Number(changePct).toFixed(2)}%`}
+          <AnimateNumber
+            value={Number(changePct || 0)}
+            timing="linear"
+            interval={15}
+            formatter={(value: number) => `${value.toFixed(2)}%`}
+          />
         </Text>
         <Text style={styles.change7d}>{messages.changes7d}</Text>
       </View>

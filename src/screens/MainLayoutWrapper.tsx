@@ -1,11 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import {
-  StyleSheet,
-  Animated,
-  SafeAreaView,
-  View,
-  StatusBar,
-} from 'react-native';
+import { StyleSheet, Animated, SafeAreaView, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { IconTextButton } from '../components';
 import { colors, messages, sizes } from '../constants';

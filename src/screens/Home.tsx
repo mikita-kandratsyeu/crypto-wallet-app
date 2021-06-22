@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
 import {
   View,
@@ -30,6 +30,8 @@ const Home: React.FC<IHomeProps> = ({
   getHoldings,
   getCoinMarket,
 }) => {
+  const [selectedCoin, setSelectedCoin] = useState(null);
+
   useFocusEffect(
     useCallback(() => {
       getHoldings(dummyData.holdings);
@@ -76,7 +78,11 @@ const Home: React.FC<IHomeProps> = ({
         <Chart
           containerStyle={{ marginTop: sizes.padding * 2 }}
           // eslint-disable-next-line camelcase
-          chartPrices={coins[0]?.sparkline_in_7d?.price}
+          chartPrices={
+            selectedCoin
+              ? selectedCoin?.sparkline_in_7d?.price
+              : coins[0]?.sparkline_in_7d?.price
+          }
         />
         <FlatList
           data={coins}
@@ -111,7 +117,10 @@ const Home: React.FC<IHomeProps> = ({
                   : [{ rotate: '125deg' }],
             };
             return (
-              <TouchableOpacity style={styles.listCoinsRenderRoot}>
+              <TouchableOpacity
+                style={styles.listCoinsRenderRoot}
+                onPress={() => setSelectedCoin(item)}
+              >
                 <View style={styles.listCoinsRender}>
                   <Image
                     source={{ uri: item.image }}
@@ -166,6 +175,8 @@ const Home: React.FC<IHomeProps> = ({
               </TouchableOpacity>
             );
           }}
+          // eslint-disable-next-line react-native/no-inline-styles
+          ListFooterComponent={<View style={{ marginBottom: 50 }} />}
         />
       </View>
     </MainLayoutWrapper>

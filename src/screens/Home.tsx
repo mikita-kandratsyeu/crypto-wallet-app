@@ -30,7 +30,7 @@ const Home: React.FC<IHomeProps> = ({
   getHoldings,
   getCoinMarket,
 }) => {
-  const [selectedCoin, setSelectedCoin] = useState(null);
+  const [selectedCoin, setSelectedCoin] = useState<any>(null);
 
   useFocusEffect(
     useCallback(() => {
@@ -77,11 +77,14 @@ const Home: React.FC<IHomeProps> = ({
         </View>
         <Chart
           containerStyle={{ marginTop: sizes.padding * 2 }}
-          // eslint-disable-next-line camelcase
           chartPrices={
             selectedCoin
-              ? selectedCoin?.sparkline_in_7d?.price
-              : coins[0]?.sparkline_in_7d?.price
+              ? // @ts-ignore
+                // eslint-disable-next-line camelcase
+                selectedCoin?.sparkline_in_7d?.price
+              : // @ts-ignore
+                // eslint-disable-next-line camelcase
+                coins[0]?.sparkline_in_7d?.price
           }
         />
         <FlatList

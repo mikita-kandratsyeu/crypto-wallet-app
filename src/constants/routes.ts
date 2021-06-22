@@ -1,4 +1,4 @@
-export enum StackRoutes {
+enum stackRoutes {
   MainLayout = 'MainLayout',
   Home = 'Home',
   Portfolio = 'Portfolio',
@@ -6,3 +6,5 @@ export enum StackRoutes {
   Market = 'Market',
   Profile = 'Profile',
 }
+
+export default stackRoutes;

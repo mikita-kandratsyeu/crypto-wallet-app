@@ -7,10 +7,9 @@ import { IStore } from '../types';
 import { getHoldings, getCoinMarket } from '../store/market/market.actions';
 import { dummyData } from '../constants';
 
-// TODO: Add Types
 export interface IHomeProps {
-  myHoldings: any;
-  coins: any;
+  myHoldings: any[];
+  coins: any[];
   getHoldings: any;
   getCoinMarket: any;
 }
@@ -43,13 +42,13 @@ const mapStateToProps = (state: IStore) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   getHoldings: (
-    holdings: any,
-    currency: any,
-    orderBy: any,
-    sparkline: any,
-    priceChangePerc: any,
-    perPage: any,
-    page: any,
+    holdings: any[],
+    currency: string,
+    orderBy: string,
+    sparkline: boolean,
+    priceChangePerc: string,
+    perPage: number,
+    page: number,
   ) =>
     dispatch(
       getHoldings(
@@ -63,12 +62,12 @@ const mapDispatchToProps = (dispatch: any) => ({
       ),
     ),
   getCoinMarket: (
-    currency: any,
-    orderBy: any,
-    sparkline: any,
-    priceChangePerc: any,
-    perPage: any,
-    page: any,
+    currency: string,
+    orderBy: string,
+    sparkline: boolean,
+    priceChangePerc: string,
+    perPage: number,
+    page: number,
   ) =>
     dispatch(
       getCoinMarket(

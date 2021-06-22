@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 import { setTradeModalVisibility } from '../store/tab/tab.actions';
 import { Home, Portfolio, Market, Profile, Trade } from '../screens';
 import { TabBarCustomButton, TabIcon } from '../components';
-import { colors, StackRoutes } from '../constants';
+import { colors, messages, stackRoutes } from '../constants';
 import { IStore } from '../types';
 
 export interface ITabsProps {
@@ -35,12 +35,12 @@ const Tabs: React.FC<ITabsProps> = ({
       }}
     >
       <Tab.Screen
-        name={StackRoutes.Home}
+        name={stackRoutes.Home}
         component={Home}
         options={{
           tabBarIcon: ({ focused }) =>
             !isTradeModalVisible && (
-              <TabIcon focused={focused} icon="home" label={StackRoutes.Home} />
+              <TabIcon focused={focused} icon="home" label={messages.home} />
             ),
         }}
         listeners={{
@@ -52,7 +52,7 @@ const Tabs: React.FC<ITabsProps> = ({
         }}
       />
       <Tab.Screen
-        name={StackRoutes.Portfolio}
+        name={stackRoutes.Portfolio}
         component={Portfolio}
         options={{
           tabBarIcon: ({ focused }) =>
@@ -60,7 +60,7 @@ const Tabs: React.FC<ITabsProps> = ({
               <TabIcon
                 focused={focused}
                 icon="briefcase"
-                label={StackRoutes.Portfolio}
+                label={messages.portfolio}
               />
             ),
         }}
@@ -73,14 +73,14 @@ const Tabs: React.FC<ITabsProps> = ({
         }}
       />
       <Tab.Screen
-        name={StackRoutes.Trade}
+        name={stackRoutes.Trade}
         component={Trade}
         options={{
           tabBarIcon: ({ focused }) => (
             <TabIcon
               focused={focused}
               icon={tradeIcon}
-              label={StackRoutes.Trade}
+              label={messages.trade}
               isTrade
             />
           ),
@@ -90,7 +90,7 @@ const Tabs: React.FC<ITabsProps> = ({
         }}
       />
       <Tab.Screen
-        name={StackRoutes.Market}
+        name={stackRoutes.Market}
         component={Market}
         options={{
           tabBarIcon: ({ focused }) =>
@@ -98,7 +98,7 @@ const Tabs: React.FC<ITabsProps> = ({
               <TabIcon
                 focused={focused}
                 icon="market"
-                label={StackRoutes.Market}
+                label={messages.market}
               />
             ),
         }}
@@ -111,7 +111,7 @@ const Tabs: React.FC<ITabsProps> = ({
         }}
       />
       <Tab.Screen
-        name={StackRoutes.Profile}
+        name={stackRoutes.Profile}
         component={Profile}
         options={{
           tabBarIcon: ({ focused }) =>
@@ -119,7 +119,7 @@ const Tabs: React.FC<ITabsProps> = ({
               <TabIcon
                 focused={focused}
                 icon="profile"
-                label={StackRoutes.Profile}
+                label={messages.profile}
               />
             ),
         }}

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { StyleSheet, View, Animated } from 'react-native';
 import { connect } from 'react-redux';
 import { IconTextButton } from '../components';
-import { colors, sizes } from '../constants';
+import { colors, messages, sizes } from '../constants';
 import { IStore } from '../types';
 
 export interface IMainLayoutProps {
@@ -48,12 +48,12 @@ const MainLayoutWrapper: React.FC<IMainLayoutProps> = ({
 
       <Animated.View style={[styles.modal, { top: modalY }]}>
         <IconTextButton
-          label="Transfer"
+          label={messages.transfer}
           icon="send"
           onPress={() => console.log('Transfer')}
         />
         <IconTextButton
-          label="Withdraw"
+          label={messages.withdraw}
           icon="withdraw"
           containerStyle={{
             marginTop: sizes.base,

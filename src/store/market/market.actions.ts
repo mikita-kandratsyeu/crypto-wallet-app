@@ -23,13 +23,13 @@ export const getHoldingsFailure = (err: Error) => ({
 });
 
 export const getHoldings = (
-  holdings = [],
-  currency = 'usd',
-  orderBy = 'market_cap_desc',
-  sparkline = true,
-  priceChangePerc = '7d',
-  perPage = 10,
-  page = 1,
+  holdings: any[] = [],
+  currency: string = 'usd',
+  orderBy: string = 'market_cap_desc',
+  sparkline: boolean = true,
+  priceChangePerc: string = '7d',
+  perPage: number = 10,
+  page: number = 1,
 ) => {
   return (dispatch: Dispatch) => {
     dispatch(getHoldingsBegin());
@@ -100,12 +100,12 @@ export const getCoinMarketFailure = (err: Error) => ({
 });
 
 export const getCoinMarket = (
-  currency = 'usd',
-  orderBy = 'market_cap_desc',
-  sparkline = true,
-  priceChangePerc = '7d',
-  perPage = 10,
-  page = 1,
+  currency: string = 'usd',
+  orderBy: string = 'market_cap_desc',
+  sparkline: boolean = true,
+  priceChangePerc: string = '7d',
+  perPage: number = 10,
+  page: number = 1,
 ) => {
   return (dispatch: Dispatch) => {
     dispatch(getCoinMarketBegin());

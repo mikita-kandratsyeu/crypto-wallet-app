@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
-
 import { StyleSheet, View, Text } from 'react-native';
-
+import AnimateNumber from 'react-native-countup';
 import { Icon } from '.';
 import { colors, fonts, messages, sizes } from '../constants';
 
@@ -43,7 +42,12 @@ export const BalanceInfo: React.FC<IBalanceInfoProps> = ({
       <View style={styles.figuresContainer}>
         <Text style={styles.figuresCurrencySymbol}>$</Text>
         <Text style={styles.figuresAmount}>
-          {Number(displayAmount).toLocaleString()}
+          <AnimateNumber
+            value={Number(displayAmount)}
+            timing="linear"
+            interval={15}
+            formatter={(value: number) => value.toLocaleString()}
+          />
         </Text>
         <Text style={styles.figuresCurrency}>{messages.usd}</Text>
       </View>

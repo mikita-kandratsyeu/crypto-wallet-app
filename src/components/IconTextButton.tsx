@@ -17,18 +17,15 @@ export const IconTextButton: React.FC<IIconTextButtonProps> = ({
   containerStyle,
   onPress,
 }) => {
-  const rootStyle = [styles.root, containerStyle];
-  const textStyle = [styles.text, fonts.h3];
-
   return (
-    <TouchableOpacity style={rootStyle} onPress={onPress}>
+    <TouchableOpacity style={[styles.root, containerStyle]} onPress={onPress}>
       <Icon
         name={icon}
         width={styles.icon.width}
         height={styles.icon.height}
         color={colors.black}
       />
-      <Text style={textStyle}>{label}</Text>
+      <Text style={styles.text}>{label}</Text>
     </TouchableOpacity>
   );
 };
@@ -48,5 +45,6 @@ const styles = StyleSheet.create({
   },
   text: {
     marginLeft: sizes.base,
+    ...fonts.h3,
   },
 });

@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './store/root-reducer';
 import { Tabs } from './navigation';
-import { StackRoutes } from './constants';
+import { stackRoutes } from './constants';
 
 const Stack = createStackNavigator();
 
@@ -26,9 +26,9 @@ export const App: React.FC = () => {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName={StackRoutes.MainLayout}
+          initialRouteName={stackRoutes.MainLayout}
         >
-          <Stack.Screen name={StackRoutes.MainLayout} component={Tabs} />
+          <Stack.Screen name={stackRoutes.MainLayout} component={Tabs} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

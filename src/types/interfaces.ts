@@ -44,4 +44,9 @@ export interface ITabState {
   isTradeModalVisible: boolean;
 }
 
-export type IMarketState = any;
+export interface IMarketState {
+  loading: boolean;
+  error: any;
+  myHoldings: any[];
+  coins: any[];
+}

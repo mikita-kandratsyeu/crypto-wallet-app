@@ -29,19 +29,15 @@ export const TabIcon: React.FC<ITabIconProps> = ({
     ];
   }, [focused]);
 
-  const textTradeStyle = [{ color: colors.white }, fonts.h4, styles.text];
-
-  const tradeContainerStyle = [styles.root, styles.tradeContainer];
-
   return isTrade ? (
-    <View style={tradeContainerStyle}>
+    <View style={[styles.root, styles.tradeContainer]}>
       <Icon
         name={icon}
         width={styles.icon.width}
         height={styles.icon.height}
         color={colors.white}
       />
-      <Text style={textTradeStyle}>{label}</Text>
+      <Text style={styles.text}>{label}</Text>
     </View>
   ) : (
     <View style={styles.root}>
@@ -73,5 +69,7 @@ const styles = StyleSheet.create({
   },
   text: {
     marginTop: 5,
+    ...fonts.h4,
+    color: colors.white,
   },
 });

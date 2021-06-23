@@ -137,14 +137,7 @@ const Home: React.FC<IHomeProps> = ({
                   <Text style={styles.listCoinsRenderPrice}>
                     {`$ ${Number(item.current_price).toLocaleString()}`}
                   </Text>
-                  <View
-                    // eslint-disable-next-line react-native/no-inline-styles
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
+                  <View style={styles.priceChangeContainer}>
                     {item.price_change_percentage_7d_in_currency !== 0 && (
                       <View style={changeIconStyle}>
                         <Icon
@@ -156,13 +149,12 @@ const Home: React.FC<IHomeProps> = ({
                       </View>
                     )}
                     <Text
-                      // eslint-disable-next-line react-native/no-inline-styles
-                      style={{
-                        marginLeft: 5,
-                        color: priceColor(),
-                        ...fonts.body5,
-                        lineHeight: 15,
-                      }}
+                      style={[
+                        styles.priceChangeText,
+                        {
+                          color: priceColor(),
+                        },
+                      ]}
                     >
                       <AnimateNumber
                         value={Number(
@@ -178,8 +170,7 @@ const Home: React.FC<IHomeProps> = ({
               </TouchableOpacity>
             );
           }}
-          // eslint-disable-next-line react-native/no-inline-styles
-          ListFooterComponent={<View style={{ marginBottom: 50 }} />}
+          ListFooterComponent={<View style={styles.footer} />}
         />
       </View>
     </MainLayoutWrapper>
@@ -252,6 +243,19 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     color: colors.white,
     ...fonts.h4,
+  },
+  priceChangeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  priceChangeText: {
+    marginLeft: 5,
+    ...fonts.body5,
+    lineHeight: 15,
+  },
+  footer: {
+    marginBottom: 50,
   },
 });
 

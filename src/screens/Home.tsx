@@ -135,7 +135,9 @@ const Home: React.FC<IHomeProps> = ({
                 </View>
                 <View>
                   <Text style={styles.listCoinsRenderPrice}>
-                    {`$ ${Number(item.current_price).toLocaleString()}`}
+                    {`$ ${Number(item.current_price).toLocaleString(undefined, {
+                      maximumFractionDigits: 2,
+                    })}`}
                   </Text>
                   <View style={styles.priceChangeContainer}>
                     {item.price_change_percentage_7d_in_currency !== 0 && (

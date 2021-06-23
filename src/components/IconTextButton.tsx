@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableHighlight } from 'react-native';
 import { Icon } from '.';
 import { colors, fonts, sizes } from '../constants';
 import { iconTypes } from '../types';
@@ -18,15 +18,21 @@ export const IconTextButton: React.FC<IIconTextButtonProps> = ({
   onPress,
 }) => {
   return (
-    <TouchableOpacity style={[styles.root, containerStyle]} onPress={onPress}>
-      <Icon
-        name={icon}
-        width={styles.icon.width}
-        height={styles.icon.height}
-        color={colors.black}
-      />
-      <Text style={styles.text}>{label}</Text>
-    </TouchableOpacity>
+    <TouchableHighlight
+      style={[styles.root, containerStyle]}
+      underlayColor={colors.lightGray5}
+      onPress={onPress}
+    >
+      <>
+        <Icon
+          name={icon}
+          width={styles.icon.width}
+          height={styles.icon.height}
+          color={colors.black}
+        />
+        <Text style={styles.text}>{label}</Text>
+      </>
+    </TouchableHighlight>
   );
 };
 

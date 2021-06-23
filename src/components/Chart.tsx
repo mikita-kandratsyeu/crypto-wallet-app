@@ -41,7 +41,9 @@ export const Chart: React.FC<IChartProps> = ({
       return '';
     }
 
-    return `${Number(value).toFixed(2)}`;
+    return `$ ${Number(value).toLocaleString(undefined, {
+      maximumFractionDigits: 2,
+    })}`;
   };
 
   const formatDateTime = (value: string): string => {

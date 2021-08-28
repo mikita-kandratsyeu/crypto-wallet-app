@@ -1,6 +1,6 @@
-export * from './TabIcon';
-export * from './TabBarCustomButton';
-export * from './Icon';
-export * from './IconTextButton';
-export * from './BalanceInfo';
-export * from './Chart';
+export { TabIcon } from './TabIcon';
+export { TabBarCustomButton } from './TabBarCustomButton';
+export { Icon } from './Icon';
+export { IconTextButton } from './IconTextButton';
+export { BalanceInfo } from './BalanceInfo';
+export { Chart } from './Chart';

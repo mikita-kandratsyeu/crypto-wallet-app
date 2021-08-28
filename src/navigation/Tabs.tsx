@@ -6,19 +6,14 @@ import { setTradeModalVisibility } from '../store/tab/tab.actions';
 import { Home, Portfolio, Market, Profile, Trade } from '../screens';
 import { TabBarCustomButton, TabIcon } from '../components';
 import { colors, messages, stackRoutes } from '../constants';
-import { IStore } from '../types';
-
-export interface ITabsProps {
-  isTradeModalVisible: boolean;
-  setTradeModalVisibility: (isVisible: boolean) => any;
-}
+import { Store } from '../types';
+import { TabsProps } from './types';
 
 const Tab = createBottomTabNavigator();
 
-const Tabs: React.FC<ITabsProps> = ({
-  isTradeModalVisible,
-  setTradeModalVisibility,
-}) => {
+const Tabs: React.FC<TabsProps> = props => {
+  const { isTradeModalVisible, setTradeModalVisibility } = props;
+
   const tradeIcon = useMemo(() => {
     return isTradeModalVisible ? 'close' : 'trade';
   }, [isTradeModalVisible]);
@@ -143,7 +138,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state: IStore) => ({
+const mapStateToProps = (state: Store) => ({
   isTradeModalVisible: state.tabReducer.isTradeModalVisible,
 });
 

@@ -2,21 +2,11 @@ import React, { useMemo } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Icon } from '.';
 import { fonts, colors } from '../constants';
-import { iconTypes } from '../types';
+import { TabIconProps } from './types';
 
-export interface ITabIconProps {
-  focused: boolean;
-  icon: iconTypes;
-  label: string;
-  isTrade?: boolean;
-}
+export const TabIcon: React.FC<TabIconProps> = props => {
+  const { focused, icon, label, isTrade } = props;
 
-export const TabIcon: React.FC<ITabIconProps> = ({
-  focused,
-  icon,
-  label,
-  isTrade,
-}) => {
   const iconColor = useMemo(() => {
     return focused ? colors.white : colors.secondary;
   }, [focused]);

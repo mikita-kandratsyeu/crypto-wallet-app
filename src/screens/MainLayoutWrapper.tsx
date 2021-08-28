@@ -3,17 +3,12 @@ import { StyleSheet, Animated, SafeAreaView, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { IconTextButton } from '../components';
 import { colors, messages, sizes } from '../constants';
-import { IStore } from '../types';
+import { Store } from '../types';
+import { MainLayoutProps } from './types';
 
-export interface IMainLayoutProps {
-  children: React.ReactNode;
-  isTradeModalVisible?: boolean;
-}
+const MainLayoutWrapper: React.FC<MainLayoutProps> = props => {
+  const { children, isTradeModalVisible } = props;
 
-const MainLayoutWrapper: React.FC<IMainLayoutProps> = ({
-  children,
-  isTradeModalVisible,
-}) => {
   const modalAnimatedValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -89,7 +84,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state: IStore) => ({
+const mapStateToProps = (state: Store) => ({
   isTradeModalVisible: state.tabReducer.isTradeModalVisible,
 });
 

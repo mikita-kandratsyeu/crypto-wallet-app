@@ -12,24 +12,15 @@ import {
 import AnimateNumber from 'react-native-countup';
 import { useFocusEffect } from '@react-navigation/core';
 import { MainLayoutWrapper } from '.';
-import { IStore } from '../types';
+import { Store } from '../types';
 import { getHoldings, getCoinMarket } from '../store/market/market.actions';
 import { colors, dummyData, fonts, messages, sizes } from '../constants';
 import { BalanceInfo, Chart, Icon, IconTextButton } from '../components';
+import { HomeProps } from './types';
 
-export interface IHomeProps {
-  myHoldings: any[];
-  coins: any[];
-  getHoldings: any;
-  getCoinMarket: any;
-}
+const Home: React.FC<HomeProps> = props => {
+  const { myHoldings, coins, getHoldings, getCoinMarket } = props;
 
-const Home: React.FC<IHomeProps> = ({
-  myHoldings,
-  coins,
-  getHoldings,
-  getCoinMarket,
-}) => {
   const [selectedCoin, setSelectedCoin] = useState<any>(null);
 
   useFocusEffect(
@@ -261,7 +252,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state: IStore) => ({
+const mapStateToProps = (state: Store) => ({
   myHoldings: state.marketReducer.myHoldings,
   coins: state.marketReducer.coins,
 });

@@ -8,18 +8,15 @@ import {
   StyleSheet,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { Icon, BalanceInfo, Chart } from '../components';
 import { MainLayoutWrapper } from '.';
 import { getHoldings } from '../store/market/market.actions';
-import { IStore } from '../types';
+import { Store } from '../types';
 import { dummyData } from '../constants';
+import { PortfolioProps } from './types';
 
-export interface IPortfolioProps {
-  myHoldings: any[];
-  getHoldings: any;
-}
+const Portfolio: React.FC<PortfolioProps> = props => {
+  const { myHoldings, getHoldings } = props;
 
-const Portfolio: React.FC<IPortfolioProps> = ({ myHoldings, getHoldings }) => {
   useFocusEffect(
     useCallback(() => {
       getHoldings(dummyData.holdings);
@@ -52,7 +49,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state: IStore) => ({
+const mapStateToProps = (state: Store) => ({
   myHoldings: state.marketReducer.myHoldings,
 });
 

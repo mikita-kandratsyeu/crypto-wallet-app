@@ -22,22 +22,11 @@ import UpArrow from '../../assets/icons/up-arrow.svg';
 import Verified from '../../assets/icons/verified.svg';
 // @ts-ignore
 import WithDraw from '../../assets/icons/withdraw.svg';
+import { IconProps } from './types';
 
-import { iconTypes } from '../types';
+export const Icon: React.FC<IconProps> = props => {
+  const { name, width = 15, height = 15, color = colors.white } = props;
 
-export interface IIconProps {
-  name: iconTypes;
-  width: number;
-  height: number;
-  color: string;
-}
-
-export const Icon: React.FC<IIconProps> = ({
-  name,
-  width = 15,
-  height = 15,
-  color = colors.white,
-}) => {
   switch (name) {
     case 'close':
       return <Close fill={color} width={width} height={height} />;

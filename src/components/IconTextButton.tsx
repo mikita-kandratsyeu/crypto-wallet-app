@@ -2,21 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, TouchableHighlight } from 'react-native';
 import { Icon } from '.';
 import { colors, fonts, sizes } from '../constants';
-import { iconTypes } from '../types';
+import { IconTextButtonProps } from './types';
 
-export interface IIconTextButtonProps {
-  label: string;
-  icon: iconTypes;
-  containerStyle?: any;
-  onPress: () => void;
-}
+export const IconTextButton: React.FC<IconTextButtonProps> = props => {
+  const { label, icon, containerStyle, onPress } = props;
 
-export const IconTextButton: React.FC<IIconTextButtonProps> = ({
-  label,
-  icon,
-  containerStyle,
-  onPress,
-}) => {
   return (
     <TouchableHighlight
       style={[styles.root, containerStyle]}

@@ -1,7 +1,7 @@
-import { IMarketState } from '../../types';
+import { MarketState } from '../types';
 import * as marketActions from './market.actions';
 
-const initialState: IMarketState = {
+const initialState: MarketState = {
   myHoldings: [],
   coins: [],
   error: null,

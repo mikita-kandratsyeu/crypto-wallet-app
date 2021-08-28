@@ -511,6 +511,8 @@
 			baseConfigurationReference = 6BB2E4B3B46F46E25E256B64 /* Pods-CryptoWalletApp-CryptoWalletAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				DEVELOPMENT_TEAM = BNMZQ2R72J;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -538,7 +540,9 @@
 			baseConfigurationReference = 40B4FD5AF4AE1FC7835924BC /* Pods-CryptoWalletApp-CryptoWalletAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = BNMZQ2R72J;
 				INFOPLIST_FILE = CryptoWalletAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

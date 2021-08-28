@@ -1,6 +1,15 @@
-export { TabIcon } from './TabIcon';
-export { TabBarCustomButton } from './TabBarCustomButton';
-export { Icon } from './Icon';
-export { IconTextButton } from './IconTextButton';
-export { BalanceInfo } from './BalanceInfo';
-export { Chart } from './Chart';
+import { TabIcon } from './TabIcon';
+import { TabBarCustomButton } from './TabBarCustomButton';
+import { Icon } from './Icon';
+import { IconTextButton } from './IconTextButton';
+import { BalanceInfo } from './BalanceInfo';
+import { Chart } from './Chart';
+
+export {
+  TabIcon,
+  TabBarCustomButton,
+  Icon,
+  IconTextButton,
+  BalanceInfo,
+  Chart,
+};

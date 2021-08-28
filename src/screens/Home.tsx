@@ -12,7 +12,7 @@ import {
 import AnimateNumber from 'react-native-countup';
 import { useFocusEffect } from '@react-navigation/core';
 import { MainLayoutWrapper } from '.';
-import { Store } from '../types';
+import { Store } from '../store/types';
 import { getHoldings, getCoinMarket } from '../store/market/market.actions';
 import { colors, dummyData, fonts, messages, sizes } from '../constants';
 import { BalanceInfo, Chart, Icon, IconTextButton } from '../components';

@@ -10,7 +10,7 @@ import {
 import { connect } from 'react-redux';
 import { MainLayoutWrapper } from '.';
 import { getHoldings } from '../store/market/market.actions';
-import { Store } from '../types';
+import { Store } from '../store/types';
 import { dummyData } from '../constants';
 import { PortfolioProps } from './types';
 

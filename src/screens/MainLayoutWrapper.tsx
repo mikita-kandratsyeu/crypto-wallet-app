@@ -3,7 +3,7 @@ import { StyleSheet, Animated, SafeAreaView, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { IconTextButton } from '../components';
 import { colors, messages, sizes } from '../constants';
-import { Store } from '../types';
+import { Store } from '../store/types';
 import { MainLayoutProps } from './types';
 
 const MainLayoutWrapper: React.FC<MainLayoutProps> = props => {

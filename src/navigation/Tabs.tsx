@@ -6,7 +6,7 @@ import { setTradeModalVisibility } from '../store/tab/tab.actions';
 import { Home, Portfolio, Market, Profile, Trade } from '../screens';
 import { TabBarCustomButton, TabIcon } from '../components';
 import { colors, messages, stackRoutes } from '../constants';
-import { Store } from '../types';
+import { Store } from '../store/types';
 import { TabsProps } from './types';
 
 const Tab = createBottomTabNavigator();

@@ -8,15 +8,7 @@ export const TabIcon: React.FC<TabIconProps> = props => {
   const { focused, icon, label, isTrade } = props;
 
   const iconColor = useMemo(() => {
-    return focused ? colors.white : colors.secondary;
-  }, [focused]);
-
-  const textStyle = useMemo(() => {
-    return [
-      { color: focused ? colors.white : colors.secondary },
-      fonts.h4,
-      styles.text,
-    ];
+    return focused ? colors.white : colors.lightGray3;
   }, [focused]);
 
   return isTrade ? (
@@ -37,7 +29,7 @@ export const TabIcon: React.FC<TabIconProps> = props => {
         height={styles.icon.height}
         color={iconColor}
       />
-      <Text style={textStyle}>{label}</Text>
+      <Text style={[styles.text, { color: iconColor }]}>{label}</Text>
     </View>
   );
 };

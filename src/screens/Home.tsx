@@ -17,6 +17,7 @@ import { getHoldings, getCoinMarket } from '../store/market/market.actions';
 import { colors, dummyData, fonts, messages, sizes } from '../constants';
 import { BalanceInfo, Chart, Icon, IconTextButton } from '../components';
 import { HomeProps } from './types';
+import { getTotalWallet, getValueChange } from './services';
 
 const Home: React.FC<HomeProps> = props => {
   const { myHoldings, coins, getHoldings, getCoinMarket } = props;
@@ -29,15 +30,9 @@ const Home: React.FC<HomeProps> = props => {
       getCoinMarket();
     }, []),
   );
-  const totalWallet = myHoldings.reduce(
-    (a: number, b: any) => a + (b.total || 0),
-    0,
-  );
 
-  const valueChange = myHoldings.reduce(
-    (a: number, b: any) => a + (b.holding_value_change_7d || 0),
-    0,
-  );
+  const valueChange = getValueChange(myHoldings);
+  const totalWallet = getTotalWallet(myHoldings);
 
   const percentChange = (valueChange / (totalWallet - valueChange)) * 100;
 
@@ -67,7 +62,7 @@ const Home: React.FC<HomeProps> = props => {
           />
         </View>
         <Chart
-          containerStyle={{ marginTop: sizes.padding * 2 }}
+          containerStyle={{ marginTop: sizes.padding }}
           chartPrices={
             selectedCoin
               ? // @ts-ignore
@@ -85,7 +80,7 @@ const Home: React.FC<HomeProps> = props => {
           // eslint-disable-next-line prettier/prettier
           ListHeaderComponent={(
             <View style={styles.listCoinsHeader}>
-              <Text style={styles.listCoinsText}>
+              <Text style={styles.listCoinsTextHeader}>
                 {messages.topCryptoCurrency}
               </Text>
             </View>
@@ -208,9 +203,12 @@ const styles = StyleSheet.create({
   listCoinsText: {
     color: colors.white,
     ...fonts.h3,
+  },
+  listCoinsTextHeader: {
+    color: colors.white,
+    ...fonts.h3,
     fontSize: 18,
   },
-
   listCoinsRenderRoot: {
     height: 55,
     flexDirection: 'row',

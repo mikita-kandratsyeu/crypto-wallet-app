@@ -29,6 +29,24 @@ export const Chart: React.FC<ChartProps> = props => {
 
   const points = monotoneCubicInterpolation({ data, range: 40 });
 
+  const formatNumber = (value: number, roundingPoint: number): string => {
+    'worklet';
+
+    if (value > 1e9) {
+      return `${(value / 1e9).toFixed(roundingPoint)}B`;
+    }
+
+    if (value > 1e6) {
+      return `${(value / 1e6).toFixed(roundingPoint)}M`;
+    }
+
+    if (value > 1e3) {
+      return `${(value / 1e3).toFixed(roundingPoint)}K`;
+    }
+
+    return value.toFixed(roundingPoint);
+  };
+
   const formatUSD = (value: string): string => {
     'worklet';
 
@@ -36,9 +54,7 @@ export const Chart: React.FC<ChartProps> = props => {
       return '';
     }
 
-    return `$ ${Number(value).toLocaleString(undefined, {
-      maximumFractionDigits: 2,
-    })}`;
+    return `$ ${formatNumber(Number(value), 2)}`;
   };
 
   const formatDateTime = (value: string): string => {
@@ -54,22 +70,6 @@ export const Chart: React.FC<ChartProps> = props => {
     const month = `0${selectedDate.getMonth() + 1}`.slice(-2);
 
     return `${date} / ${month}`;
-  };
-
-  const formatNumber = (value: number, roundingPoint: number): string => {
-    if (value > 1e9) {
-      return `${(value / 1e9).toFixed(roundingPoint)}B`;
-    }
-
-    if (value > 1e6) {
-      return `${(value / 1e6).toFixed(roundingPoint)}M`;
-    }
-
-    if (value > 1e3) {
-      return `${(value / 1e3).toFixed(roundingPoint)}K`;
-    }
-
-    return value.toFixed(roundingPoint);
   };
 
   const getYAxisLabelValues = (): string[] => {

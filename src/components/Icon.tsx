@@ -24,33 +24,29 @@ import Verified from '../../assets/icons/verified.svg';
 import WithDraw from '../../assets/icons/withdraw.svg';
 import { IconProps } from './types';
 
+const capitalizeFirstLetter = (string: String) =>
+  string.charAt(0).toUpperCase() + string.slice(1);
+
+const icons: { [key: string]: any } = {
+  Close,
+  Briefcase,
+  Home,
+  Market,
+  Profile,
+  RightArrow,
+  Send,
+  Trade,
+  UpArrow,
+  Verified,
+  WithDraw,
+};
+
 export const Icon: React.FC<IconProps> = props => {
   const { name, width = 15, height = 15, color = colors.white } = props;
 
-  switch (name) {
-    case 'close':
-      return <Close fill={color} width={width} height={height} />;
-    case 'briefcase':
-      return <Briefcase fill={color} width={width} height={height} />;
-    case 'home':
-      return <Home fill={color} width={width} height={height} />;
-    case 'market':
-      return <Market fill={color} width={width} height={height} />;
-    case 'profile':
-      return <Profile fill={color} width={width} height={height} />;
-    case 'rightArrow':
-      return <RightArrow fill={color} width={width} height={height} />;
-    case 'send':
-      return <Send fill={color} width={width} height={height} />;
-    case 'trade':
-      return <Trade fill={color} width={width} height={height} />;
-    case 'upArrow':
-      return <UpArrow fill={color} width={width} height={height} />;
-    case 'verified':
-      return <Verified fill={color} width={width} height={height} />;
-    case 'withdraw':
-      return <WithDraw fill={color} width={width} height={height} />;
-    default:
-      return null;
-  }
+  const Component = icons[capitalizeFirstLetter(name)];
+
+  return Component ? (
+    <Component fill={color} width={width} height={height} />
+  ) : null;
 };

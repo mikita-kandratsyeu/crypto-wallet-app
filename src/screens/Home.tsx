@@ -56,7 +56,7 @@ const Home: React.FC<HomeProps> = props => {
           />
           <IconTextButton
             label={messages.withdraw}
-            icon="withdraw"
+            icon="withDraw"
             containerStyle={styles.iconTextButton}
             onPress={() => console.log('Withdraw')}
           />

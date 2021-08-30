@@ -50,7 +50,7 @@ const MainLayoutWrapper: React.FC<MainLayoutProps> = props => {
         />
         <IconTextButton
           label={messages.withdraw}
-          icon="withdraw"
+          icon="withDraw"
           containerStyle={{
             marginTop: sizes.base,
           }}

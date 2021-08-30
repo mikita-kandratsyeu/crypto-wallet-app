@@ -9,7 +9,7 @@ export type iconTypes =
   | 'trade'
   | 'upArrow'
   | 'verified'
-  | 'withdraw';
+  | 'withDraw';
 
 export interface ChartProps {
   containerStyle?: any;

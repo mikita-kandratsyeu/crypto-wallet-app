@@ -10,7 +10,7 @@ const getValueChange = (myHoldings: any[]) =>
     0,
   );
 
-//TODO: Will refactor as a reusable 
+// TODO: Will refactor as a reusable
 const showAlert = () =>
   Alert.alert(messages.titleAlert, messages.bodyAlert, [
     {

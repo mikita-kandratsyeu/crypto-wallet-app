@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { connect } from 'react-redux';
 import { StyleSheet } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 import { setTradeModalVisibility } from '../store/tab/tab.actions';
 import { Home, Portfolio, Market, Profile, Trade } from '../screens';
 import { TabBarCustomButton, TabIcon } from '../components';
@@ -132,7 +133,7 @@ const Tabs: React.FC<TabsProps> = props => {
 
 const styles = StyleSheet.create({
   root: {
-    height: 140,
+    height: DeviceInfo.hasNotch() ? 120 : 90,
     backgroundColor: colors.primary,
     borderTopColor: 'transparent',
   },

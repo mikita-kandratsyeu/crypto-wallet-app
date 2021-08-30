@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { IconTextButton } from '../components';
 import { colors, messages, sizes } from '../constants';
 import { Store } from '../store/types';
+import { showAlert } from './services';
 import { MainLayoutProps } from './types';
 
 const MainLayoutWrapper: React.FC<MainLayoutProps> = props => {
@@ -46,7 +47,7 @@ const MainLayoutWrapper: React.FC<MainLayoutProps> = props => {
         <IconTextButton
           label={messages.transfer}
           icon="send"
-          onPress={() => console.log('Transfer')}
+          onPress={showAlert}
         />
         <IconTextButton
           label={messages.withdraw}
@@ -54,7 +55,7 @@ const MainLayoutWrapper: React.FC<MainLayoutProps> = props => {
           containerStyle={{
             marginTop: sizes.base,
           }}
-          onPress={() => console.log('Withdraw')}
+          onPress={showAlert}
         />
       </Animated.View>
     </SafeAreaView>

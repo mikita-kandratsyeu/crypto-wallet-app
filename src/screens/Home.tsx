@@ -17,7 +17,7 @@ import { getHoldings, getCoinMarket } from '../store/market/market.actions';
 import { colors, dummyData, fonts, messages, sizes } from '../constants';
 import { BalanceInfo, Chart, Icon, IconTextButton } from '../components';
 import { HomeProps } from './types';
-import { getTotalWallet, getValueChange } from './services';
+import { getTotalWallet, getValueChange, showAlert } from './services';
 
 const Home: React.FC<HomeProps> = props => {
   const { myHoldings, coins, getHoldings, getCoinMarket } = props;
@@ -52,13 +52,13 @@ const Home: React.FC<HomeProps> = props => {
             label={messages.transfer}
             icon="send"
             containerStyle={styles.iconTextButton}
-            onPress={() => console.log('Transfer')}
+            onPress={showAlert}
           />
           <IconTextButton
             label={messages.withdraw}
             icon="withDraw"
             containerStyle={styles.iconTextButton}
-            onPress={() => console.log('Withdraw')}
+            onPress={showAlert}
           />
         </View>
         <Chart

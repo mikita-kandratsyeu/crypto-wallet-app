@@ -15,6 +15,9 @@ enum messages {
   asset = 'Asset',
   price = 'Price',
   holdings = 'Holdings',
+  buttonAlert = 'Got it!',
+  titleAlert = 'Future development',
+  bodyAlert = 'This functionality is not available at the moment',
 }
 
 export default messages;

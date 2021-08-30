@@ -11,16 +11,11 @@ import {
 } from '@rainbow-me/animated-charts';
 import moment from 'moment';
 import { colors, fonts, sizes } from '../constants';
+import { ChartProps } from './types';
 
-export interface IChartProps {
-  containerStyle?: any;
-  chartPrices: any[];
-}
+export const Chart: React.FC<ChartProps> = props => {
+  const { chartPrices, containerStyle } = props;
 
-export const Chart: React.FC<IChartProps> = ({
-  chartPrices,
-  containerStyle,
-}) => {
   const startUnixTimestamp = moment().subtract(7, 'day').unix();
 
   const data = chartPrices
@@ -34,6 +29,24 @@ export const Chart: React.FC<IChartProps> = ({
 
   const points = monotoneCubicInterpolation({ data, range: 40 });
 
+  const formatNumber = (value: number, roundingPoint: number): string => {
+    'worklet';
+
+    if (value > 1e9) {
+      return `${(value / 1e9).toFixed(roundingPoint)}B`;
+    }
+
+    if (value > 1e6) {
+      return `${(value / 1e6).toFixed(roundingPoint)}M`;
+    }
+
+    if (value > 1e3) {
+      return `${(value / 1e3).toFixed(roundingPoint)}K`;
+    }
+
+    return value.toFixed(roundingPoint);
+  };
+
   const formatUSD = (value: string): string => {
     'worklet';
 
@@ -41,7 +54,7 @@ export const Chart: React.FC<IChartProps> = ({
       return '';
     }
 
-    return `${Number(value).toFixed(2)}`;
+    return `$ ${formatNumber(Number(value), 2)}`;
   };
 
   const formatDateTime = (value: string): string => {
@@ -57,22 +70,6 @@ export const Chart: React.FC<IChartProps> = ({
     const month = `0${selectedDate.getMonth() + 1}`.slice(-2);
 
     return `${date} / ${month}`;
-  };
-
-  const formatNumber = (value: number, roundingPoint: number): string => {
-    if (value > 1e9) {
-      return `${(value / 1e9).toFixed(roundingPoint)}B`;
-    }
-
-    if (value > 1e6) {
-      return `${(value / 1e6).toFixed(roundingPoint)}M`;
-    }
-
-    if (value > 1e3) {
-      return `${(value / 1e3).toFixed(roundingPoint)}K`;
-    }
-
-    return value.toFixed(roundingPoint);
   };
 
   const getYAxisLabelValues = (): string[] => {

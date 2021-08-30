@@ -2,31 +2,13 @@ import React, { useMemo } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Icon } from '.';
 import { fonts, colors } from '../constants';
-import { iconTypes } from '../types';
+import { TabIconProps } from './types';
 
-export interface ITabIconProps {
-  focused: boolean;
-  icon: iconTypes;
-  label: string;
-  isTrade?: boolean;
-}
+export const TabIcon: React.FC<TabIconProps> = props => {
+  const { focused, icon, label, isTrade } = props;
 
-export const TabIcon: React.FC<ITabIconProps> = ({
-  focused,
-  icon,
-  label,
-  isTrade,
-}) => {
   const iconColor = useMemo(() => {
-    return focused ? colors.white : colors.secondary;
-  }, [focused]);
-
-  const textStyle = useMemo(() => {
-    return [
-      { color: focused ? colors.white : colors.secondary },
-      fonts.h4,
-      styles.text,
-    ];
+    return focused ? colors.white : colors.lightGray3;
   }, [focused]);
 
   return isTrade ? (
@@ -47,7 +29,7 @@ export const TabIcon: React.FC<ITabIconProps> = ({
         height={styles.icon.height}
         color={iconColor}
       />
-      <Text style={textStyle}>{label}</Text>
+      <Text style={[styles.text, { color: iconColor }]}>{label}</Text>
     </View>
   );
 };

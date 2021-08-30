@@ -1,6 +1,22 @@
-import { IHoldings, IProfile, ISettings } from '../types';
+export interface Holdings {
+  id: string;
+  qty: number;
+}
 
-export const holdings: IHoldings[] = [
+export interface Profile {
+  id: number;
+  email: string;
+}
+
+export interface Settings {
+  launchScreen: string;
+  currency: string;
+  appearance: string;
+  language: string;
+  faceId: boolean;
+}
+
+export const holdings: Holdings[] = [
   {
     id: 'bitcoin',
     qty: 888,
@@ -15,12 +31,12 @@ export const holdings: IHoldings[] = [
   },
 ];
 
-export const profile: IProfile = {
+export const profile: Profile = {
   id: 8888888,
   email: 'byprogrammers@gmail.com',
 };
 
-export const settings: ISettings = {
+export const settings: Settings = {
   launchScreen: 'Home',
   currency: 'USD',
   appearance: 'Dark',

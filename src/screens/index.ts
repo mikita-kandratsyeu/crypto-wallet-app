@@ -1,6 +1,8 @@
-export { default as Home } from './Home';
-export { default as MainLayoutWrapper } from './MainLayoutWrapper';
-export * from './Market';
-export * from './Portfolio';
-export * from './Profile';
-export * from './Trade';
+import Home from './Home';
+import MainLayoutWrapper from './MainLayoutWrapper';
+import Portfolio from './Portfolio';
+import { Market } from './Market';
+import { Profile } from './Profile';
+import { Trade } from './Trade';
+
+export { Home, MainLayoutWrapper, Portfolio, Market, Profile, Trade };

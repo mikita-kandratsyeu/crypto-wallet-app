@@ -1,19 +1,22 @@
 import React, { useEffect, useRef } from 'react';
-import { StyleSheet, Animated, SafeAreaView, StatusBar } from 'react-native';
+import {
+  StyleSheet,
+  Animated,
+  SafeAreaView,
+  StatusBar,
+  TouchableOpacity,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { IconTextButton } from '../components';
 import { colors, messages, sizes } from '../constants';
-import { IStore } from '../types';
+import { setTradeModalVisibility } from '../store/tab/tab.actions';
+import { Store } from '../store/types';
+import { showAlert } from './services';
+import { MainLayoutProps } from './types';
 
-export interface IMainLayoutProps {
-  children: React.ReactNode;
-  isTradeModalVisible?: boolean;
-}
+const MainLayoutWrapper: React.FC<MainLayoutProps> = props => {
+  const { children, isTradeModalVisible, setTradeModalVisibility } = props;
 
-const MainLayoutWrapper: React.FC<IMainLayoutProps> = ({
-  children,
-  isTradeModalVisible,
-}) => {
   const modalAnimatedValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -43,23 +46,32 @@ const MainLayoutWrapper: React.FC<IMainLayoutProps> = ({
       {children}
       {isTradeModalVisible && (
         <Animated.View
-          style={[styles.modalVisible, { opacity: modalAnimatedValue }]}
-        />
+          style={[
+            styles.modalVisible,
+            {
+              opacity: modalAnimatedValue,
+            },
+          ]}
+        >
+          <TouchableOpacity
+            onPress={() => setTradeModalVisibility?.(!isTradeModalVisible)}
+            style={styles.touchableArea}
+          />
+        </Animated.View>
       )}
-
       <Animated.View style={[styles.modal, { top: modalY }]}>
         <IconTextButton
           label={messages.transfer}
           icon="send"
-          onPress={() => console.log('Transfer')}
+          onPress={showAlert}
         />
         <IconTextButton
           label={messages.withdraw}
-          icon="withdraw"
+          icon="withDraw"
           containerStyle={{
             marginTop: sizes.base,
           }}
-          onPress={() => console.log('Withdraw')}
+          onPress={showAlert}
         />
       </Animated.View>
     </SafeAreaView>
@@ -87,10 +99,20 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: colors.transparentBlack,
   },
+  touchableArea: {
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+  },
 });
 
-const mapStateToProps = (state: IStore) => ({
+const mapStateToProps = (state: Store) => ({
   isTradeModalVisible: state.tabReducer.isTradeModalVisible,
 });
 
-export default connect(mapStateToProps, null)(MainLayoutWrapper);
+const mapDispatchToProps = (dispatch: any) => ({
+  setTradeModalVisibility: (isVisible: boolean) =>
+    dispatch(setTradeModalVisibility(isVisible)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainLayoutWrapper);

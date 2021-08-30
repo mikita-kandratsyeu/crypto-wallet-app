@@ -12,25 +12,15 @@ import {
 import AnimateNumber from 'react-native-countup';
 import { useFocusEffect } from '@react-navigation/core';
 import { MainLayoutWrapper } from '.';
-import { IStore } from '../types';
+import { Store } from '../store/types';
 import { getHoldings, getCoinMarket } from '../store/market/market.actions';
 import { colors, dummyData, fonts, messages, sizes } from '../constants';
 import { BalanceInfo, Chart, Icon, IconTextButton } from '../components';
+import { HomeProps } from './types';
+import { getTotalWallet, getValueChange, showAlert } from './services';
 
-export interface IHomeProps {
-  myHoldings: any[];
-  coins: any[];
-  getHoldings: any;
-  getCoinMarket: any;
-}
-
-const Home: React.FC<IHomeProps> = ({
-  myHoldings,
-  coins,
-  getHoldings,
-  getCoinMarket,
-}) => {
-  const [selectedCoin, setSelectedCoin] = useState<any>(null);
+const Home: React.FC<HomeProps> = props => {
+  const { myHoldings, coins, getHoldings, getCoinMarket } = props;
 
   useFocusEffect(
     useCallback(() => {
@@ -38,15 +28,11 @@ const Home: React.FC<IHomeProps> = ({
       getCoinMarket();
     }, []),
   );
-  const totalWallet = myHoldings.reduce(
-    (a: number, b: any) => a + (b.total || 0),
-    0,
-  );
 
-  const valueChange = myHoldings.reduce(
-    (a: number, b: any) => a + (b.holding_value_change_7d || 0),
-    0,
-  );
+  const [selectedCoin, setSelectedCoin] = useState<any>(null);
+
+  const valueChange = getValueChange(myHoldings);
+  const totalWallet = getTotalWallet(myHoldings);
 
   const percentChange = (valueChange / (totalWallet - valueChange)) * 100;
 
@@ -66,24 +52,22 @@ const Home: React.FC<IHomeProps> = ({
             label={messages.transfer}
             icon="send"
             containerStyle={styles.iconTextButton}
-            onPress={() => console.log('Transfer')}
+            onPress={showAlert}
           />
           <IconTextButton
             label={messages.withdraw}
-            icon="withdraw"
+            icon="withDraw"
             containerStyle={styles.iconTextButton}
-            onPress={() => console.log('Withdraw')}
+            onPress={showAlert}
           />
         </View>
         <Chart
-          containerStyle={{ marginTop: sizes.padding * 2 }}
+          containerStyle={{ marginTop: sizes.padding }}
           chartPrices={
             selectedCoin
-              ? // @ts-ignore
-                // eslint-disable-next-line camelcase
+              ? // eslint-disable-next-line camelcase
                 selectedCoin?.sparkline_in_7d?.price
-              : // @ts-ignore
-                // eslint-disable-next-line camelcase
+              : // eslint-disable-next-line camelcase
                 coins[0]?.sparkline_in_7d?.price
           }
         />
@@ -94,7 +78,7 @@ const Home: React.FC<IHomeProps> = ({
           // eslint-disable-next-line prettier/prettier
           ListHeaderComponent={(
             <View style={styles.listCoinsHeader}>
-              <Text style={styles.listCoinsText}>
+              <Text style={styles.listCoinsTextHeader}>
                 {messages.topCryptoCurrency}
               </Text>
             </View>
@@ -135,7 +119,9 @@ const Home: React.FC<IHomeProps> = ({
                 </View>
                 <View>
                   <Text style={styles.listCoinsRenderPrice}>
-                    {`$ ${Number(item.current_price).toLocaleString()}`}
+                    {`$ ${Number(item.current_price).toLocaleString(undefined, {
+                      maximumFractionDigits: 2,
+                    })}`}
                   </Text>
                   <View style={styles.priceChangeContainer}>
                     {item.price_change_percentage_7d_in_currency !== 0 && (
@@ -215,9 +201,12 @@ const styles = StyleSheet.create({
   listCoinsText: {
     color: colors.white,
     ...fonts.h3,
+  },
+  listCoinsTextHeader: {
+    color: colors.white,
+    ...fonts.h3,
     fontSize: 18,
   },
-
   listCoinsRenderRoot: {
     height: 55,
     flexDirection: 'row',
@@ -247,7 +236,7 @@ const styles = StyleSheet.create({
   priceChangeContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
   },
   priceChangeText: {
     marginLeft: 5,
@@ -259,7 +248,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state: IStore) => ({
+const mapStateToProps = (state: Store) => ({
   myHoldings: state.marketReducer.myHoldings,
   coins: state.marketReducer.coins,
 });

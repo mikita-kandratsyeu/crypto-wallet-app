@@ -1,7 +1,7 @@
-import { ITabState } from '../../types';
+import { TabState } from '../types';
 import * as tabActionTypes from './tab.actions';
 
-const initialState: ITabState = {
+const initialState: TabState = {
   isTradeModalVisible: false,
 };
 

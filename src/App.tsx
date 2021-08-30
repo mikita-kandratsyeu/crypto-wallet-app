@@ -18,19 +18,17 @@ const middleware =
 
 const store = createStore(rootReducer, middleware);
 
-export const App: React.FC = () => {
-  return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
-          initialRouteName={stackRoutes.MainLayout}
-        >
-          <Stack.Screen name={stackRoutes.MainLayout} component={Tabs} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
-  );
-};
+export const App: React.FC = () => (
+  <Provider store={store}>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+        initialRouteName={stackRoutes.MainLayout}
+      >
+        <Stack.Screen name={stackRoutes.MainLayout} component={Tabs} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  </Provider>
+);

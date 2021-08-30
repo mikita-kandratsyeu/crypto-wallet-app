@@ -1,6 +1,9 @@
-import { IMarketTabs } from '../types';
+export interface MarketTabs {
+  id: number;
+  title: string;
+}
 
-const marketTabs: IMarketTabs[] = [
+const marketTabs: MarketTabs[] = [
   {
     id: 1,
     title: 'Cryptoassets',

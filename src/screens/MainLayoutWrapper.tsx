@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
+import DeviceInfo from 'react-native-device-info';
 import { IconTextButton } from '../components';
 import { colors, messages, sizes } from '../constants';
 import { setTradeModalVisibility } from '../store/tab/tab.actions';
@@ -37,7 +38,10 @@ const MainLayoutWrapper: React.FC<MainLayoutProps> = props => {
 
   const modalY = modalAnimatedValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [sizes.height, sizes.height - 280],
+    outputRange: [
+      sizes.height,
+      sizes.height - (DeviceInfo.hasNotch() ? 280 : 240),
+    ],
   });
 
   return (

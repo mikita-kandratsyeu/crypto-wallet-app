@@ -133,7 +133,7 @@ const Tabs: React.FC<TabsProps> = props => {
 
 const styles = StyleSheet.create({
   root: {
-    height: DeviceInfo.hasNotch() ? 120 : 90,
+    height: DeviceInfo.hasNotch() ? 130 : 90,
     backgroundColor: colors.primary,
     borderTopColor: 'transparent',
   },

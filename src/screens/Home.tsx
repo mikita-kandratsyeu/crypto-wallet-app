@@ -22,14 +22,14 @@ import { getTotalWallet, getValueChange } from './services';
 const Home: React.FC<HomeProps> = props => {
   const { myHoldings, coins, getHoldings, getCoinMarket } = props;
 
-  const [selectedCoin, setSelectedCoin] = useState<any>(null);
-
   useFocusEffect(
     useCallback(() => {
       getHoldings(dummyData.holdings);
       getCoinMarket();
     }, []),
   );
+
+  const [selectedCoin, setSelectedCoin] = useState<any>(null);
 
   const valueChange = getValueChange(myHoldings);
   const totalWallet = getTotalWallet(myHoldings);
@@ -65,11 +65,9 @@ const Home: React.FC<HomeProps> = props => {
           containerStyle={{ marginTop: sizes.padding }}
           chartPrices={
             selectedCoin
-              ? // @ts-ignore
-                // eslint-disable-next-line camelcase
+              ? // eslint-disable-next-line camelcase
                 selectedCoin?.sparkline_in_7d?.price
-              : // @ts-ignore
-                // eslint-disable-next-line camelcase
+              : // eslint-disable-next-line camelcase
                 coins[0]?.sparkline_in_7d?.price
           }
         />
@@ -238,7 +236,7 @@ const styles = StyleSheet.create({
   priceChangeContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
   },
   priceChangeText: {
     marginLeft: 5,

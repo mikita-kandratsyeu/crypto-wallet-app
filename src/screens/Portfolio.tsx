@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/core';
 import {
   View,
@@ -9,13 +9,15 @@ import {
   Image,
 } from 'react-native';
 import { connect } from 'react-redux';
+// @ts-ignore
+import AnimateNumber from 'react-native-countup';
 import { MainLayoutWrapper } from '.';
 import { getHoldings } from '../store/market/market.actions';
 import { Store } from '../store/types';
 import { colors, dummyData, fonts, messages, sizes } from '../constants';
 import { PortfolioProps } from './types';
 import { getTotalWallet, getValueChange } from './services';
-import { BalanceInfo, Chart } from '../components';
+import { BalanceInfo, Chart, Icon } from '../components';
 
 const Portfolio: React.FC<PortfolioProps> = props => {
   const { myHoldings, getHoldings } = props;
@@ -25,6 +27,8 @@ const Portfolio: React.FC<PortfolioProps> = props => {
       getHoldings(dummyData.holdings);
     }, []),
   );
+
+  const [selectedCoin, setSelectedCoin] = useState<any>(null);
 
   const valueChange = getValueChange(myHoldings);
   const totalWallet = getTotalWallet(myHoldings);
@@ -45,7 +49,13 @@ const Portfolio: React.FC<PortfolioProps> = props => {
         <Chart
           containerStyle={{ marginTop: sizes.padding }}
           // eslint-disable-next-line camelcase
-          chartPrices={myHoldings[0]?.sparkline_in_7d?.value}
+          chartPrices={
+            selectedCoin
+              ? // eslint-disable-next-line camelcase
+                selectedCoin?.sparkline_in_7d?.value
+              : // eslint-disable-next-line camelcase
+                myHoldings[0]?.sparkline_in_7d?.value
+          }
         />
         <FlatList
           data={myHoldings}
@@ -82,11 +92,79 @@ const Portfolio: React.FC<PortfolioProps> = props => {
             // eslint-disable-next-line prettier/prettier
           )}
           renderItem={({ item }) => {
+            const priceColor = () => {
+              if (item.price_change_percentage_7d_in_currency === 0) {
+                return colors.lightGray3;
+              }
+
+              if (item.price_change_percentage_7d_in_currency > 0) {
+                return colors.lightGreen;
+              }
+
+              return colors.red;
+            };
+
+            const changeIconStyle = {
+              transform:
+                Number(item.price_change_percentage_7d_in_currency) > 0
+                  ? [{ rotate: '45deg' }]
+                  : [{ rotate: '125deg' }],
+            };
+
             return (
-              <TouchableOpacity style={styles.assetsListItem}>
+              <TouchableOpacity
+                style={styles.assetsListItem}
+                onPress={() => setSelectedCoin(item)}
+              >
                 <View style={styles.assetItem}>
                   <Image source={{ uri: item.image }} style={styles.icon} />
                   <Text style={styles.assetItemName}>{item.name}</Text>
+                </View>
+                <View style={styles.assetItemPrice}>
+                  <Text style={styles.assetItemPriceText}>
+                    {`$ ${Number(item.current_price).toLocaleString(undefined, {
+                      maximumFractionDigits: 2,
+                    })}`}
+                  </Text>
+                  <View style={styles.assetItemPriceChangeContainer}>
+                    {item.price_change_percentage_7d_in_currency !== 0 && (
+                      <View style={changeIconStyle}>
+                        <Icon
+                          name="upArrow"
+                          height={10}
+                          width={10}
+                          color={priceColor()}
+                        />
+                      </View>
+                    )}
+                    <Text
+                      style={[
+                        styles.assetItemPriceChangeText,
+                        {
+                          color: priceColor(),
+                        },
+                      ]}
+                    >
+                      <AnimateNumber
+                        value={Number(
+                          item.price_change_percentage_7d_in_currency || 0,
+                        )}
+                        timing="linear"
+                        interval={15}
+                        formatter={(value: number) => `${value.toFixed(2)}%`}
+                      />
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.assetItemHoldings}>
+                  <Text style={styles.assetItemHoldingsText}>
+                    {`$ ${Number(item.total).toLocaleString(undefined, {
+                      maximumFractionDigits: 2,
+                    })}`}
+                  </Text>
+                  <Text style={styles.assetItemHoldingsQty}>
+                    {`${item.qty} ${item.symbol.toUpperCase()}`}
+                  </Text>
                 </View>
               </TouchableOpacity>
             );
@@ -153,6 +231,42 @@ const styles = StyleSheet.create({
     marginLeft: sizes.radius,
     color: colors.white,
     ...fonts.h3,
+  },
+  assetItemPrice: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  assetItemPriceText: {
+    textAlign: 'right',
+    color: colors.white,
+    ...fonts.h4,
+    lineHeight: 15,
+  },
+  assetItemPriceChangeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  assetItemPriceChangeText: {
+    marginLeft: 5,
+    ...fonts.body5,
+    lineHeight: 15,
+  },
+  assetItemHoldings: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  assetItemHoldingsText: {
+    textAlign: 'right',
+    color: colors.white,
+    ...fonts.h4,
+    lineHeight: 15,
+  },
+  assetItemHoldingsQty: {
+    textAlign: 'right',
+    color: colors.lightGray3,
+    ...fonts.body5,
+    lineHeight: 15,
   },
 });
 

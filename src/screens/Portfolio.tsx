@@ -48,7 +48,6 @@ const Portfolio: React.FC<PortfolioProps> = props => {
         </View>
         <Chart
           containerStyle={{ marginTop: sizes.padding }}
-          // eslint-disable-next-line camelcase
           chartPrices={
             selectedCoin
               ? // eslint-disable-next-line camelcase

@@ -8,6 +8,7 @@ export interface HomeProps {
 export interface MainLayoutProps {
   children: React.ReactNode;
   isTradeModalVisible?: boolean;
+  setTradeModalVisibility?: (isVisible: boolean) => any;
 }
 
 export interface PortfolioProps {

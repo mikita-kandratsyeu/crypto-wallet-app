@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
+import DeviceInfo from 'react-native-device-info';
 import { IconTextButton } from '../components';
 import { colors, messages, sizes } from '../constants';
 import { setTradeModalVisibility } from '../store/tab/tab.actions';
@@ -37,8 +38,24 @@ const MainLayoutWrapper: React.FC<MainLayoutProps> = props => {
 
   const modalY = modalAnimatedValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [sizes.height, sizes.height - 280],
+    outputRange: [
+      sizes.height,
+      sizes.height - (DeviceInfo.hasNotch() ? 280 : 240),
+    ],
   });
+
+  const alertHandler = () =>
+    showAlert({
+      title: messages.titleAlert,
+      body: messages.bodyAlert,
+      buttons: [
+        {
+          text: messages.buttonAlert,
+          onPress: () => null,
+          style: 'cancel',
+        },
+      ],
+    });
 
   return (
     <SafeAreaView style={styles.root}>
@@ -63,7 +80,7 @@ const MainLayoutWrapper: React.FC<MainLayoutProps> = props => {
         <IconTextButton
           label={messages.transfer}
           icon="send"
-          onPress={showAlert}
+          onPress={alertHandler}
         />
         <IconTextButton
           label={messages.withdraw}
@@ -71,7 +88,7 @@ const MainLayoutWrapper: React.FC<MainLayoutProps> = props => {
           containerStyle={{
             marginTop: sizes.base,
           }}
-          onPress={showAlert}
+          onPress={alertHandler}
         />
       </Animated.View>
     </SafeAreaView>

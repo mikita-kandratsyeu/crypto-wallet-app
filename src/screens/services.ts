@@ -1,5 +1,4 @@
-import { Alert } from 'react-native';
-import { messages } from '../constants';
+import { Alert, AlertButton } from 'react-native';
 
 const getTotalWallet = (myHoldings: any[]) =>
   myHoldings.reduce((a: number, b: any) => a + (b.total || 0), 0);
@@ -10,14 +9,14 @@ const getValueChange = (myHoldings: any[]) =>
     0,
   );
 
-// TODO: Will refactor as a reusable
-const showAlert = () =>
-  Alert.alert(messages.titleAlert, messages.bodyAlert, [
-    {
-      text: messages.buttonAlert,
-      onPress: () => null,
-      style: 'cancel',
-    },
-  ]);
+const showAlert = ({
+  title,
+  body,
+  buttons,
+}: {
+  title: string;
+  body: string;
+  buttons?: AlertButton[];
+}) => Alert.alert(title, body, buttons);
 
 export { getTotalWallet, getValueChange, showAlert };

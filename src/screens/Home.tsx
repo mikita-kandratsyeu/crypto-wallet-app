@@ -36,6 +36,19 @@ const Home: React.FC<HomeProps> = props => {
 
   const percentChange = (valueChange / (totalWallet - valueChange)) * 100;
 
+  const alertHandler = () =>
+    showAlert({
+      title: messages.titleAlert,
+      body: messages.bodyAlert,
+      buttons: [
+        {
+          text: messages.buttonAlert,
+          onPress: () => null,
+          style: 'cancel',
+        },
+      ],
+    });
+
   return (
     <MainLayoutWrapper>
       <View style={styles.root}>
@@ -52,13 +65,13 @@ const Home: React.FC<HomeProps> = props => {
             label={messages.transfer}
             icon="send"
             containerStyle={styles.iconTextButton}
-            onPress={showAlert}
+            onPress={alertHandler}
           />
           <IconTextButton
             label={messages.withdraw}
             icon="withDraw"
             containerStyle={styles.iconTextButton}
-            onPress={showAlert}
+            onPress={alertHandler}
           />
         </View>
         <Chart

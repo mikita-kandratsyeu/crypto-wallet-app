@@ -44,6 +44,19 @@ const MainLayoutWrapper: React.FC<MainLayoutProps> = props => {
     ],
   });
 
+  const alertHandler = () =>
+    showAlert({
+      title: messages.titleAlert,
+      body: messages.bodyAlert,
+      buttons: [
+        {
+          text: messages.buttonAlert,
+          onPress: () => null,
+          style: 'cancel',
+        },
+      ],
+    });
+
   return (
     <SafeAreaView style={styles.root}>
       <StatusBar barStyle="light-content" />
@@ -67,7 +80,7 @@ const MainLayoutWrapper: React.FC<MainLayoutProps> = props => {
         <IconTextButton
           label={messages.transfer}
           icon="send"
-          onPress={showAlert}
+          onPress={alertHandler}
         />
         <IconTextButton
           label={messages.withdraw}
@@ -75,7 +88,7 @@ const MainLayoutWrapper: React.FC<MainLayoutProps> = props => {
           containerStyle={{
             marginTop: sizes.base,
           }}
-          onPress={showAlert}
+          onPress={alertHandler}
         />
       </Animated.View>
     </SafeAreaView>

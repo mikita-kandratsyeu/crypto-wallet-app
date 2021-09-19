@@ -17,8 +17,8 @@ export interface BalanceInfoProps {
 
 export interface IconProps {
   name: IconTypes;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   color: string;
 }
 
@@ -55,4 +55,17 @@ export interface TextButtonProps {
 export interface TabIndicatorProps {
   measureLayout: any[];
   scrollX: Animated.Value;
+}
+
+export interface SectionTitleProps {
+  title: string;
+}
+
+export interface SettingProps {
+  title: string;
+  value?: string;
+  switchValue?: boolean;
+  type?: 'button' | 'switch' | undefined;
+  onPress?: () => void;
+  onSwitchValueChange?: (value: boolean) => void;
 }

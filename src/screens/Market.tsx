@@ -199,6 +199,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: colors.black,
+    paddingTop: 15,
   },
   tabsContainer: {
     marginTop: sizes.radius,

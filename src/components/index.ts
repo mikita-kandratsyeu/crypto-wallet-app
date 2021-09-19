@@ -6,6 +6,8 @@ import { BalanceInfo } from './BalanceInfo';
 import { Chart } from './Chart';
 import { Switcher } from './Switcher';
 import { TextButton } from './TextButton';
+import { SectionTitle } from './SectionTitle';
+import { Setting } from './Setting';
 
 export {
   TabIcon,
@@ -16,4 +18,6 @@ export {
   Chart,
   Switcher,
   TextButton,
+  SectionTitle,
+  Setting,
 };

@@ -73,7 +73,6 @@ const Market: React.FC<MarketProps> = props => {
               useNativeDriver: false,
             },
           )}
-          // TODO: move the styles to a separate variable
           renderItem={() => (
             <View style={styles.columnContainer}>
               <FlatList

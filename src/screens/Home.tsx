@@ -63,13 +63,13 @@ const Home: React.FC<HomeProps> = props => {
         <View style={styles.iconTextButtonContainer}>
           <IconTextButton
             label={messages.transfer}
-            icon="send"
+            icon="Send"
             containerStyle={styles.iconTextButton}
             onPress={alertHandler}
           />
           <IconTextButton
             label={messages.withdraw}
-            icon="withDraw"
+            icon="WithDraw"
             containerStyle={styles.iconTextButton}
             onPress={alertHandler}
           />
@@ -140,7 +140,7 @@ const Home: React.FC<HomeProps> = props => {
                     {item.price_change_percentage_7d_in_currency !== 0 && (
                       <View style={changeIconStyle}>
                         <Icon
-                          name="upArrow"
+                          name="UpArrow"
                           height={10}
                           width={10}
                           color={priceColor()}

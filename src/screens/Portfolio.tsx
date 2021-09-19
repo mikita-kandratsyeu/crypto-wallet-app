@@ -129,7 +129,7 @@ const Portfolio: React.FC<PortfolioProps> = props => {
                     {item.price_change_percentage_7d_in_currency !== 0 && (
                       <View style={changeIconStyle}>
                         <Icon
-                          name="upArrow"
+                          name="UpArrow"
                           height={10}
                           width={10}
                           color={priceColor()}

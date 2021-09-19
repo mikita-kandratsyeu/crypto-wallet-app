@@ -1,9 +1,9 @@
 import { Alert, AlertButton } from 'react-native';
 
-const getTotalWallet = (myHoldings: any[]) =>
+const getTotalWallet = <T extends {}>(myHoldings: T[]) =>
   myHoldings.reduce((a: number, b: any) => a + (b.total || 0), 0);
 
-const getValueChange = (myHoldings: any[]) =>
+const getValueChange = <T extends {}>(myHoldings: T[]) =>
   myHoldings.reduce(
     (a: number, b: any) => a + (b.holding_value_change_7d || 0),
     0,

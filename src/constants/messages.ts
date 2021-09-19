@@ -20,6 +20,22 @@ enum messages {
   titleAlert = 'Future development',
   bodyAlert = 'This functionality is not available at the moment',
   top = 'Top',
+  verified = 'Verified',
+  app = 'APP',
+  launchScreen = 'Launch Screen',
+  launchScreenValue = 'Home',
+  appearance = 'Appearance',
+  appearanceValue = 'Dark',
+  account = 'ACCOUNT',
+  paymentCurrency = 'Payment Currency',
+  paymentCurrencyValue = 'USD',
+  language = 'Language',
+  languageValue = 'English',
+  security = 'SECURITY',
+  faceId = 'Face ID',
+  passwordSettings = 'Password Settings',
+  changePassword = 'Change Password',
+  twoFactorAuth = '2-Factor Authentication',
 }
 
 export default messages;

@@ -1,15 +1,7 @@
-export type iconTypes =
-  | 'close'
-  | 'briefcase'
-  | 'home'
-  | 'market'
-  | 'profile'
-  | 'rightArrow'
-  | 'send'
-  | 'trade'
-  | 'upArrow'
-  | 'verified'
-  | 'withDraw';
+import { Animated } from 'react-native';
+import { icons } from './Icon';
+
+export type IconTypes = keyof typeof icons;
 
 export interface ChartProps {
   containerStyle?: any;
@@ -24,7 +16,7 @@ export interface BalanceInfoProps {
 }
 
 export interface IconProps {
-  name: iconTypes;
+  name: IconTypes;
   width: number;
   height: number;
   color: string;
@@ -32,7 +24,7 @@ export interface IconProps {
 
 export interface IconTextButtonProps {
   label: string;
-  icon: iconTypes;
+  icon: IconTypes;
   containerStyle?: any;
   onPress: () => void;
 }
@@ -44,7 +36,23 @@ export interface TabBarCustomButtonProps {
 
 export interface TabIconProps {
   focused: boolean;
-  icon: iconTypes;
+  icon: IconTypes;
   label: string;
   isTrade?: boolean;
+}
+
+export interface SwitcherProps {
+  scrollX: Animated.Value;
+  onPress: (index: number) => void;
+}
+
+export interface TextButtonProps {
+  label: string;
+  onPress: () => void;
+  containerStyle?: any;
+}
+
+export interface TabIndicatorProps {
+  measureLayout: any[];
+  scrollX: Animated.Value;
 }

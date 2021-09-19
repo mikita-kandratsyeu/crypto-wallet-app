@@ -14,10 +14,7 @@ import Verified from '../../assets/icons/verified.svg';
 import WithDraw from '../../assets/icons/withdraw.svg';
 import { IconProps } from './types';
 
-const capitalizeFirstLetter = (string: String) =>
-  string.charAt(0).toUpperCase() + string.slice(1);
-
-const icons: { [key: string]: any } = {
+export const icons = {
   Close,
   Briefcase,
   Home,
@@ -34,7 +31,7 @@ const icons: { [key: string]: any } = {
 export const Icon: React.FC<IconProps> = props => {
   const { name, width = 15, height = 15, color = colors.white } = props;
 
-  const SvgIcon = icons[capitalizeFirstLetter(name)];
+  const SvgIcon = icons[name];
 
   return <SvgIcon fill={color} width={width} height={height} />;
 };

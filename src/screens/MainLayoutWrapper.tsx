@@ -79,12 +79,12 @@ const MainLayoutWrapper: React.FC<MainLayoutProps> = props => {
       <Animated.View style={[styles.modal, { top: modalY }]}>
         <IconTextButton
           label={messages.transfer}
-          icon="send"
+          icon="Send"
           onPress={alertHandler}
         />
         <IconTextButton
           label={messages.withdraw}
-          icon="withDraw"
+          icon="WithDraw"
           containerStyle={{
             marginTop: sizes.base,
           }}

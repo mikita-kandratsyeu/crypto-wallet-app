@@ -47,7 +47,7 @@ export const BalanceInfo: React.FC<BalanceInfoProps> = props => {
         {Number(changePct || 0) !== 0 && (
           <View style={changePercentIconStyle}>
             <Icon
-              name="upArrow"
+              name="UpArrow"
               width={10}
               height={10}
               color={Number(changePct) > 0 ? colors.lightGreen : colors.red}

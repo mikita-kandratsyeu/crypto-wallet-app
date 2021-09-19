@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { connect } from 'react-redux';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Animated } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import { setTradeModalVisibility } from '../store/tab/tab.actions';
 import { Home, Portfolio, Market, Profile, Trade } from '../screens';
@@ -15,8 +15,26 @@ const Tab = createBottomTabNavigator();
 const Tabs: React.FC<TabsProps> = props => {
   const { isTradeModalVisible, setTradeModalVisibility } = props;
 
+  const modalAnimatedValue = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    if (isTradeModalVisible) {
+      Animated.timing(modalAnimatedValue, {
+        toValue: 0,
+        duration: 250,
+        useNativeDriver: false,
+      }).start();
+    } else {
+      Animated.timing(modalAnimatedValue, {
+        toValue: 1,
+        duration: 250,
+        useNativeDriver: false,
+      }).start();
+    }
+  }, [isTradeModalVisible]);
+
   const tradeIcon = useMemo(() => {
-    return isTradeModalVisible ? 'close' : 'trade';
+    return isTradeModalVisible ? 'Close' : 'Trade';
   }, [isTradeModalVisible]);
 
   const tradeTabButtonHandler = () => {
@@ -36,7 +54,15 @@ const Tabs: React.FC<TabsProps> = props => {
         options={{
           tabBarIcon: ({ focused }) =>
             !isTradeModalVisible && (
-              <TabIcon focused={focused} icon="home" label={messages.home} />
+              <Animated.View
+                style={[
+                  {
+                    opacity: modalAnimatedValue,
+                  },
+                ]}
+              >
+                <TabIcon focused={focused} icon="Home" label={messages.home} />
+              </Animated.View>
             ),
         }}
         listeners={{
@@ -53,11 +79,19 @@ const Tabs: React.FC<TabsProps> = props => {
         options={{
           tabBarIcon: ({ focused }) =>
             !isTradeModalVisible && (
-              <TabIcon
-                focused={focused}
-                icon="briefcase"
-                label={messages.portfolio}
-              />
+              <Animated.View
+                style={[
+                  {
+                    opacity: modalAnimatedValue,
+                  },
+                ]}
+              >
+                <TabIcon
+                  focused={focused}
+                  icon="Briefcase"
+                  label={messages.portfolio}
+                />
+              </Animated.View>
             ),
         }}
         listeners={{
@@ -91,11 +125,19 @@ const Tabs: React.FC<TabsProps> = props => {
         options={{
           tabBarIcon: ({ focused }) =>
             !isTradeModalVisible && (
-              <TabIcon
-                focused={focused}
-                icon="market"
-                label={messages.market}
-              />
+              <Animated.View
+                style={[
+                  {
+                    opacity: modalAnimatedValue,
+                  },
+                ]}
+              >
+                <TabIcon
+                  focused={focused}
+                  icon="Market"
+                  label={messages.market}
+                />
+              </Animated.View>
             ),
         }}
         listeners={{
@@ -112,11 +154,19 @@ const Tabs: React.FC<TabsProps> = props => {
         options={{
           tabBarIcon: ({ focused }) =>
             !isTradeModalVisible && (
-              <TabIcon
-                focused={focused}
-                icon="profile"
-                label={messages.profile}
-              />
+              <Animated.View
+                style={[
+                  {
+                    opacity: modalAnimatedValue,
+                  },
+                ]}
+              >
+                <TabIcon
+                  focused={focused}
+                  icon="Profile"
+                  label={messages.profile}
+                />
+              </Animated.View>
             ),
         }}
         listeners={{

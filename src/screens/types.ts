@@ -15,3 +15,8 @@ export interface PortfolioProps {
   myHoldings: any[];
   getHoldings: any;
 }
+
+export interface MarketProps {
+  getCoinMarket: any;
+  coins: any[];
+}

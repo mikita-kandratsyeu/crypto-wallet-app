@@ -8,6 +8,7 @@ enum messages {
   withdraw = 'Withdraw',
   yourWallet = 'Your Wallet',
   changes7d = '7d changes',
+  changes7dShort = '% (7d)',
   usd = 'USD',
   topCryptoCurrency = 'Top Cryptocurrency',
   currentBalance = 'Current Balance',
@@ -18,6 +19,7 @@ enum messages {
   buttonAlert = 'Got it!',
   titleAlert = 'Future development',
   bodyAlert = 'This functionality is not available at the moment',
+  top = 'Top',
 }
 
 export default messages;

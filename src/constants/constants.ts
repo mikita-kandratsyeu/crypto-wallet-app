@@ -1,15 +1,16 @@
-export interface MarketTabs {
-  id: number;
+export interface MarketTab {
+  id: string;
   title: string;
+  ref?: any;
 }
 
-const marketTabs: MarketTabs[] = [
+const marketTabs: MarketTab[] = [
   {
-    id: 1,
+    id: '1',
     title: 'Cryptoassets',
   },
   {
-    id: 2,
+    id: '2',
     title: 'Exchanges',
   },
 ];
